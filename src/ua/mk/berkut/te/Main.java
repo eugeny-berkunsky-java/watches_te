@@ -31,21 +31,69 @@ public class Main {
 
     private void processDBQueries() {
         Scanner in = new Scanner(System.in);
-        main: while (true) {
+        int m;
+        do {
             System.out.println("0. exit");
             System.out.println("1. Country list");
             System.out.println("2. Add country");
-            int m = in.nextInt();
+            System.out.println("3. Update country");
+            System.out.println("4. Add vendor");
+            System.out.println("5. Vendors list");
+            m = in.nextInt();
             switch (m) {
-                case 0: break main;
                 case 1: listCountries(); break;
                 case 2: addCountry(); break;
+                case 3: updateCountry(); break;
+                case 4: addVendor(); break;
+                case 5: showVendors(); break;
+            }
+        } while (m > 0);
+    }
+
+    private void showVendors() {
+
+    }
+
+    private void addVendor() {
+        //TODO add vendor
+    }
+
+    private void updateCountry() {
+        Scanner in = new Scanner(System.in);
+        int countryId = Integer.parseInt(in.nextLine());
+        Country country = countryDAO.find(countryId);
+        if (country == null) {
+            System.err.println("Error while searching");
+            return;
+        }
+        if (country.getId() > 0) {
+            System.out.println(country);
+            String newName = in.nextLine();
+            String newShortName = in.nextLine();
+            if (!newName.isBlank()) {
+                country.setName(newName);
+            }
+            if (!newShortName.isBlank()) {
+                country.setShortName(newShortName);
+            }
+            int result = countryDAO.update(country);
+            if (result < 0) {
+                System.err.println("Error while updating");
             }
         }
     }
 
     private void addCountry() {
-
+        Scanner in = new Scanner(System.in);
+        System.out.println("--- new country ---");
+        System.out.print("Country name: ");
+        String name = in.nextLine();
+        System.out.print("Country short name: ");
+        String shortName = in.nextLine();
+        int res = countryDAO.add(new Country(name, shortName));
+        if (res < 0) {
+            System.err.println("Error while adding");
+        }
     }
 
     private void listCountries() {

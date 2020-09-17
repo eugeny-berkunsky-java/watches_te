@@ -806,7 +806,7 @@ true posixrules
     <database id="6" parent="1" name="watches">
       <ObjectId>16515</ObjectId>
       <Owner>te</Owner>
-      <IntrospectionStateNumber>823</IntrospectionStateNumber>
+      <IntrospectionStateNumber>833</IntrospectionStateNumber>
       <Current>1</Current>
       <Relations>sequence|table|16516|16518|1
 sequence|table|16526|16528|1
@@ -877,7 +877,7 @@ sequence|table|16553|16555|1
       <Comment>standard public schema</Comment>
       <StateNumber>360</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>824</IntrospectionStateNumber>
+      <IntrospectionStateNumber>834</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <access-method id="21" parent="6" name="btree">
@@ -1176,8 +1176,7 @@ sequence|table|16553|16555|1
     <column id="66" parent="39" name="vendor_id">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>819</StateNumber>
+      <StateNumber>832</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <index id="67" parent="39" name="watch_pk">

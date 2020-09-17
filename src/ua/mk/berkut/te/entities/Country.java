@@ -13,6 +13,10 @@ public class Country {
         this.shortName = shortName;
     }
 
+    public Country(String name, String shortName) {
+        this(0, name, shortName);
+    }
+
     public int getId() {
         return id;
     }

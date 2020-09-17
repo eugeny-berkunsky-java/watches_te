@@ -40,4 +40,28 @@ public class CountryDAO {
             return -1;
         }
     }
+    
+    public int update(Country country) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("update country set name = ?, short_name = ? where id = ?")) {
+            preparedStatement.setString(1, country.getName());
+            preparedStatement.setString(2, country.getShortName());
+            preparedStatement.setInt(3, country.getId());
+            preparedStatement.executeUpdate();
+            return 0;
+        } catch (SQLException e) {
+            return -1;
+        }
+    }
+
+    public Country find(int countryId) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("select * from country where id = ?")) {
+            preparedStatement.setInt(1, countryId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return new Country(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("short_name"));
+            } else return new Country(0,null, null);
+        } catch (SQLException e) {
+            return null;
+        }
+    }
 }
